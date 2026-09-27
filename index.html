@@ -401,6 +401,32 @@
   .split-box.ship  { background: var(--navy-bg); border: var(--border-w) solid var(--gray); }
   .split-box.duty  { background: #fff3e0; border: var(--border-w) solid var(--shipping-color); }
   .split-box .icon-circle { width: 40px; height: 40px; margin-bottom: 6px; }
+  /* ○と×の透かし（冒頭の対比・第2章の内訳） */
+  .split-box, .compare-box { position: relative; }
+  .compare-box {
+    min-height: 156px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .split-box::after, .compare-box::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .compare-box::after { inset: -14px 0; }
+  .compare-row { margin-top: 28px; margin-bottom: 14px; }
+  .split-box.price::after, .compare-box.correct::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='43' fill='none' stroke='%23e53935' stroke-width='8'/%3E%3C/svg%3E");
+  }
+  .split-box.ship::after, .split-box.duty::after, .compare-box.wrong::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10 10 L90 90 M90 10 L10 90' fill='none' stroke='%23e53935' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
   .split-box .split-label { font-size: var(--fs-label); font-weight: bold; margin-bottom: 4px; }
   .split-box .split-value { font-size: var(--fs-number); font-weight: 900; margin-bottom: 8px; }
   .split-box.price .split-label, .split-box.price .split-value { color: #0b3d91; }
@@ -596,6 +622,8 @@
     }
 
     .cluster-plus.outer { padding: 4px 0; }
+    .cluster-boxes .split-box { align-self: stretch; flex: none; }
+    .compare-row { gap: 40px; }
 
     .arrows-row { justify-content: center; }
     .arrows-row .arrow-down:nth-child(2),
@@ -643,12 +671,10 @@
 
     <div class="fig-wrap compare-row">
       <div class="compare-box wrong">
-        <span class="compare-mark">✕</span>
         <div class="compare-title">販売価格をそのまま申告</div>
         <div class="compare-desc">そう思われがちです</div>
       </div>
       <div class="compare-box correct">
-        <span class="compare-mark">✓</span>
         <div class="compare-title">商品代だけを申告</div>
         <div class="compare-desc">送料は含めません</div>
       </div>
