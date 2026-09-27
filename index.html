@@ -16,6 +16,24 @@
     --correct-border: #2e7d32;
     --gray: #607d8b;
     --shipping-color: #ffa726;
+    --navy: #0b2447;
+    --navy-bg: #eceff1;
+
+    /* font-size scale（7種類＋見出しh1の1回限りの例外） */
+    --fs-note: 13px;   /* 補足・注記・出典・キャプション */
+    --fs-label: 15px;  /* 図中ラベル */
+    --fs-body: 16px;   /* 本文（箱の中の本文もこのサイズ） */
+    --fs-sub: 17px;    /* 小見出し */
+    --fs-heading: 19px;/* 章見出し・強い強調語 */
+    --fs-icon: 22px;   /* 丸アイコンの絵文字（章をまたいで統一） */
+    --fs-number: 32px; /* 大きな数字 */
+
+    /* 角丸・枠線・余白のトークン（種類を絞る） */
+    --radius-box: 14px;   /* 箱（カード状の囲み） */
+    --radius-band: 10px;  /* 帯（結論・注意・計算式など） */
+    --border-w: 2px;      /* 枠線の太さ（全箱・全帯で統一） */
+    --pad-roomy: 16px 18px; /* 1〜2列の箱・帯 */
+    --pad-tight: 12px 10px; /* 3〜5列の箱 */
   }
 
   * {
@@ -33,7 +51,7 @@
     background: #f5f7fa;
     color: #222;
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-    font-size: 16px;
+    font-size: var(--fs-body);
     line-height: 1.8;
     word-break: break-word;
   }
@@ -57,23 +75,6 @@
     padding: 16px;
   }
 
-  .stage-label {
-    text-align: center;
-    font-weight: bold;
-    color: var(--accent);
-    font-size: 16px;
-    margin: 14px 0 6px 0;
-  }
-
-  ol.steps {
-    margin: 12px 0;
-    padding-left: 26px;
-  }
-
-  ol.steps li {
-    margin-bottom: 10px;
-  }
-
   section.card {
     background: #fff;
     border-radius: 16px;
@@ -84,16 +85,16 @@
 
   h2 {
     color: var(--accent);
-    font-size: 19px;
+    font-size: var(--fs-heading);
     border-left: 6px solid var(--accent);
     padding-left: 10px;
     margin-top: 0;
   }
 
   h3 {
-    font-size: 17px;
+    font-size: var(--fs-sub);
     color: #333;
-    margin-bottom: 8px;
+    margin: 0 0 8px 0;
   }
 
   p {
@@ -109,148 +110,22 @@
     margin-bottom: 8px;
   }
 
+  .small-note {
+    font-size: var(--fs-note);
+    color: #666;
+    margin: 8px 0;
+  }
+
   .point-box {
     background: var(--accent-light);
-    border: 2px solid var(--accent);
-    border-radius: 12px;
-    padding: 14px;
+    border: var(--border-w) solid var(--accent);
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
     margin: 16px 0;
     font-weight: bold;
+    font-size: var(--fs-heading);
     color: #0b3d91;
     text-align: center;
-  }
-
-  /* 図: 合計の箱 */
-  .fig-sum {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 20px 0;
-  }
-
-  .fig-sum .box {
-    flex: 1 1 90px;
-    min-width: 90px;
-    max-width: 130px;
-    text-align: center;
-    padding: 14px 6px;
-    border-radius: 12px;
-    font-weight: bold;
-  }
-
-  .fig-sum .box.price {
-    background: #e3eafc;
-    border: 2px solid var(--accent);
-    color: #0b3d91;
-  }
-
-  .fig-sum .box.ship {
-    background: #fff3e0;
-    border: 2px solid var(--shipping-color);
-    color: #a05a00;
-  }
-
-  .fig-sum .box.total {
-    background: #eeeeee;
-    border: 2px solid #555;
-    color: #222;
-  }
-
-  .fig-sum .op {
-    font-size: 24px;
-    font-weight: bold;
-    color: #555;
-    flex: 0 0 auto;
-  }
-
-  .box .label {
-    display: block;
-    font-size: 13px;
-    font-weight: normal;
-    margin-bottom: 4px;
-  }
-
-  .box .value {
-    display: block;
-    font-size: 18px;
-  }
-
-  .bar-total-label {
-    font-weight: bold;
-    font-size: 15px;
-    margin-bottom: 6px;
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .bar-total-label .amount {
-    display: block;
-    font-size: 20px;
-  }
-
-  table.term-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0;
-    font-size: 15px;
-  }
-
-  table.term-table th, table.term-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-
-  table.term-table th {
-    background: var(--accent-light);
-    color: #0b3d91;
-    width: 30%;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 999px;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
-  .badge.wrong {
-    background: var(--wrong-bg);
-    color: var(--wrong-text);
-    border: 1px solid var(--wrong-border);
-  }
-
-  .badge.correct {
-    background: var(--correct-bg);
-    color: var(--correct-text);
-    border: 1px solid var(--correct-border);
-  }
-
-  .example-line {
-    border-radius: 10px;
-    padding: 12px;
-    margin: 10px 0;
-    font-size: 16px;
-  }
-
-  .example-line.wrong {
-    background: var(--wrong-bg);
-    color: var(--wrong-text);
-    border: 2px solid var(--wrong-border);
-  }
-
-  .example-line.correct {
-    background: var(--correct-bg);
-    color: var(--correct-text);
-    border: 2px solid var(--correct-border);
-  }
-
-  .example-line strong {
-    font-size: 18px;
   }
 
   figure.shot {
@@ -267,13 +142,17 @@
   }
 
   figure.shot figcaption {
-    font-size: 12px;
+    font-size: var(--fs-note);
     color: #666;
     margin-top: 8px;
   }
 
+  figure.shot figcaption a {
+    color: var(--accent);
+  }
+
   .source-note {
-    font-size: 13px;
+    font-size: var(--fs-note);
     color: #666;
     margin: 8px 0 0 0;
   }
@@ -285,23 +164,23 @@
   /* 引用カード（blockquoteは使わない） */
   div.quote {
     background: #f5f5f5;
-    border: 2px solid var(--gray);
-    border-radius: 12px;
-    padding: 16px 18px;
+    border: var(--border-w) solid var(--gray);
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
     margin: 16px 0;
   }
 
   div.quote .quote-en {
     font-family: Georgia, "Times New Roman", serif;
     font-style: italic;
-    font-size: 14px;
+    font-size: var(--fs-note);
     line-height: 1.7;
     color: #333;
     margin: 0;
   }
 
   div.quote .quote-ja {
-    font-size: 15px;
+    font-size: var(--fs-body);
     color: #0b3d91;
     margin: 12px 0 0 0;
     padding-top: 12px;
@@ -309,7 +188,7 @@
   }
 
   div.quote .quote-source {
-    font-size: 12px;
+    font-size: var(--fs-note);
     color: #777;
     margin-top: 10px;
   }
@@ -318,16 +197,23 @@
     color: var(--accent);
   }
 
-  /* 計算式ボックス */
+  /* 計算式ボックス（第2・4・5章で共通利用） */
   .formula-box {
     background: #eeeeee;
-    border: 2px solid #555;
-    border-radius: 10px;
+    border: var(--border-w) solid #555;
+    border-radius: var(--radius-band);
     padding: 14px 16px;
     margin: 16px 0;
     text-align: center;
     font-weight: bold;
-    font-size: 15px;
+    font-size: var(--fs-label);
+  }
+
+  .formula-box .note {
+    display: block;
+    font-weight: normal;
+    font-size: var(--fs-note);
+    margin-top: 4px;
   }
 
   ol.summary-list {
@@ -336,22 +222,405 @@
 
   ol.summary-list li {
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: var(--fs-body);
   }
 
   footer {
     text-align: center;
-    font-size: 12px;
+    font-size: var(--fs-note);
     color: #999;
     padding: 20px 16px 40px 16px;
   }
 
-  @media (max-width: 600px) {
+  /* ============ 図解パーツ（共通） ============ */
+  .fig-wrap { margin: 18px 0; }
+
+  .icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-icon);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    flex: none;
+    margin: 0 auto 8px auto;
+  }
+
+  .icon-inline {
+    font-size: var(--fs-icon);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .arrow-down {
+    text-align: center;
+    color: var(--accent);
+    font-size: var(--fs-heading);
+    font-weight: bold;
+    margin: 4px 0;
+    line-height: 1;
+  }
+
+  /* ---- ×○対比（この記事でわかること） ---- */
+  .compare-row {
+    display: flex;
+    gap: 10px;
+    margin: 14px 0 4px 0;
+  }
+  .compare-box {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
+    text-align: center;
+  }
+  .compare-box.wrong { background: var(--wrong-bg); border: var(--border-w) solid var(--wrong-border); }
+  .compare-box.correct { background: var(--correct-bg); border: var(--border-w) solid var(--correct-border); }
+  .compare-box .compare-mark {
+    font-size: var(--fs-heading);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .compare-box.wrong .compare-mark { color: var(--wrong-text); }
+  .compare-box.correct .compare-mark { color: var(--correct-text); }
+  .compare-box .compare-title { font-size: var(--fs-sub); font-weight: bold; margin-bottom: 2px; }
+  .compare-box.wrong .compare-title { color: var(--wrong-text); }
+  .compare-box.correct .compare-title { color: var(--correct-text); }
+  .compare-box .compare-desc { font-size: var(--fs-note); color: #444; }
+
+  /* ---- 第1章：運送申告価額 vs 税関申告価額 ---- */
+  .term-blocks {
+    display: flex;
+    gap: 14px;
+    margin: 16px 0;
+    align-items: stretch;
+  }
+  .term-block {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
+  }
+  .term-block.ship { background: #eeeeee; border: var(--border-w) solid var(--gray); }
+  .term-block.customs { background: var(--accent-light); border: var(--border-w) solid var(--accent); }
+  .term-block .term-title { font-size: var(--fs-sub); font-weight: bold; margin-bottom: 8px; text-align: center; }
+  .term-block.ship .term-title { color: #222; }
+  .term-block.customs .term-title { color: #0b3d91; }
+  .term-block .term-body { font-size: var(--fs-body); }
+  .term-block.ship .term-body { color: #333; }
+  .term-block.customs .term-body { color: #0b3d91; }
+
+  /* ---- 第2章：販売価格の内訳 ---- */
+  .price-tag-wrap { display: flex; justify-content: center; margin-bottom: 4px; }
+  .price-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent-light);
+    border: var(--border-w) solid var(--accent);
+    border-radius: var(--radius-box);
+    padding: 12px 22px;
+  }
+  .price-tag .tag-label { font-size: var(--fs-label); font-weight: bold; color: #0b3d91; }
+  .price-tag .tag-value { font-size: var(--fs-number); font-weight: 900; color: #0b3d91; line-height: 1.2; }
+  .price-tag .tag-value .unit { font-size: var(--fs-label); font-weight: bold; margin-left: 2px; }
+
+  .total-band {
+    background: #eeeeee;
+    border: var(--border-w) solid #555;
+    border-radius: var(--radius-band);
+    padding: var(--pad-roomy);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--fs-label);
+    color: #222;
+  }
+  .total-band .total-amount { font-size: var(--fs-heading); font-weight: 900; }
+
+  .split-clusters {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .cluster {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
+  }
+  .cluster.price-cluster { flex: 3 1 0; min-width: 0; background: #fff; border: var(--border-w) solid var(--accent); }
+  .cluster.duty-cluster { flex: 1.3 1 0; min-width: 0; background: #fff; border: var(--border-w) solid var(--shipping-color); }
+  .cluster-head {
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--fs-sub);
+    margin-bottom: 10px;
+  }
+  .price-cluster .cluster-head { color: #0b3d91; }
+  .duty-cluster .cluster-head { color: #a05a00; }
+  .cluster-boxes {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 8px;
+  }
+  .cluster-plus {
+    flex: 0 0 auto;
+    align-self: center;
+    font-size: var(--fs-heading);
+    font-weight: bold;
+    color: #555;
+  }
+  .cluster-plus.outer { padding: 0 2px; }
+  .cluster-note {
+    margin-top: 8px;
+    text-align: center;
+    font-size: var(--fs-note);
+    color: #a05a00;
+  }
+
+  .split-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 10px 0 4px 0;
+  }
+  .split-box {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: var(--pad-tight);
+    border-radius: var(--radius-box);
+  }
+  .split-box.price { background: var(--correct-bg); border: var(--border-w) solid var(--correct-border); }
+  .split-box.ship  { background: var(--navy-bg); border: var(--border-w) solid var(--gray); }
+  .split-box.duty  { background: #fff3e0; border: var(--border-w) solid var(--shipping-color); }
+  .split-box .icon-circle { width: 40px; height: 40px; margin-bottom: 6px; }
+  .split-box .split-label { font-size: var(--fs-label); font-weight: bold; margin-bottom: 4px; }
+  .split-box .split-value { font-size: var(--fs-number); font-weight: 900; margin-bottom: 8px; }
+  .split-box.price .split-label, .split-box.price .split-value { color: #0b3d91; }
+  .split-box.ship .split-label, .split-box.ship .split-value { color: #37474f; }
+  .split-box.duty .split-label, .split-box.duty .split-value { color: #a05a00; }
+  .stamp {
+    display: inline-block;
+    font-size: var(--fs-note);
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+  .stamp.ok { background: var(--correct-border); color: #fff; }
+  .stamp.no { background: var(--gray); color: #fff; }
+
+  /* ---- 第4章：発送先ごとの分かれ道 ---- */
+  .question-box {
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
+    text-align: center;
+    font-size: var(--fs-heading);
+    font-weight: bold;
+    margin: 4px 0 4px 0;
+  }
+  .arrows-row {
+    display: flex;
+    gap: 14px;
+    margin: 4px 0;
+  }
+  .arrows-row .arrow-down { flex: 1 1 0; margin: 0; }
+
+  .branches {
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+    margin-top: 4px;
+  }
+  .branch {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
+  }
+  .branch.us    { background: var(--correct-bg); border: var(--border-w) solid var(--correct-border); }
+  .branch.other { background: var(--navy-bg); border: var(--border-w) solid var(--gray); }
+  .branch.eu    { background: var(--wrong-bg); border: var(--border-w) solid var(--wrong-border); }
+  .branch h3 { text-align: center; margin: 0 0 8px 0; color: #222; }
+  .branch .body-text {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: #333;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .conclusion {
+    margin-top: auto;
+    border-radius: var(--radius-band);
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+  }
+  .conclusion.us    { background: var(--correct-border); color: #fff; }
+  .conclusion.other { background: var(--gray); color: #fff; }
+  .conclusion.eu    { background: var(--wrong-border); color: #fff; }
+
+  /* 補足（カードに入れなかった元記事の文。控えめな見た目） */
+  .branch-footnotes {
+    margin-top: 14px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-band);
+    padding: var(--pad-roomy);
+    background: #fafafa;
+  }
+  .branch-footnotes .footnote-item {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: #444;
+    margin: 8px 0;
+  }
+  .branch-footnotes .footnote-item:first-child { margin-top: 0; }
+  .branch-footnotes .footnote-item:last-child { margin-bottom: 0; }
+  .branch-footnotes .footnote-item strong { color: #222; }
+
+  /* ---- 第5章：手順カード ---- */
+  .steps-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .step-card {
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--accent-light);
+    border: var(--border-w) solid var(--accent);
+    border-radius: var(--radius-box);
+    padding: var(--pad-tight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .step-num { font-size: var(--fs-heading); font-weight: bold; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .step-icon { font-size: var(--fs-icon); margin-bottom: 4px; }
+  .step-text { font-size: var(--fs-label); font-weight: bold; color: #0b3d91; line-height: 1.45; }
+  .step-sub {
+    margin-top: 8px;
+    font-size: var(--fs-note);
+    font-weight: normal;
+    color: #455a64;
+    line-height: 1.4;
+  }
+  .warn-band {
+    background: var(--wrong-bg);
+    border: var(--border-w) solid var(--wrong-border);
+    color: var(--wrong-text);
+    border-radius: var(--radius-band);
+    padding: var(--pad-roomy);
+    margin: 10px 0;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .calc-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin: 14px 0 4px 0;
+  }
+  .calc-box {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: var(--radius-box);
+    padding: var(--pad-tight);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .calc-box.price { background: var(--accent-light); border: var(--border-w) solid var(--accent); }
+  .calc-box.ship  { background: var(--navy-bg); border: var(--border-w) solid var(--gray); }
+  .calc-box.declared { background: var(--correct-bg); border: var(--border-w) solid var(--correct-border); }
+  .calc-label { font-size: var(--fs-label); font-weight: bold; margin-bottom: 6px; }
+  .calc-value { font-size: var(--fs-number); font-weight: 900; }
+  .calc-value .unit { font-size: var(--fs-label); font-weight: bold; margin-left: 2px; }
+  .calc-box.price .calc-label, .calc-box.price .calc-value { color: #0b3d91; }
+  .calc-box.ship .calc-label, .calc-box.ship .calc-value { color: #37474f; }
+  .calc-box.declared .calc-label, .calc-box.declared .calc-value { color: #1b4d2e; }
+  .calc-symbol { flex: 0 0 auto; font-size: var(--fs-heading); font-weight: bold; color: #555; align-self: center; }
+  .calc-breakdown {
+    margin-top: 10px;
+    background: #eeeeee;
+    border: var(--border-w) solid #b0bec5;
+    border-radius: var(--radius-band);
+    padding: var(--pad-roomy);
+    font-size: var(--fs-label);
+    line-height: 1.8;
+    color: #455a64;
+    text-align: center;
+  }
+  .term-chip { display: inline-block; white-space: nowrap; }
+
+  /* ---- 第6章：注意点 ---- */
+  .caution-box {
+    background: var(--wrong-bg);
+    border: var(--border-w) solid var(--wrong-border);
+    border-radius: var(--radius-box);
+    padding: var(--pad-roomy);
+  }
+  .caution-box ul.intro-list li { color: #7a1f1f; }
+  .caution-box ul.intro-list li strong { color: var(--wrong-text); }
+
+  @media (max-width: 700px) {
     section.card { padding: 20px 16px; }
+
+    .term-blocks,
+    .split-row,
+    .branches,
+    .steps-row,
+    .calc-row,
+    .compare-row,
+    .split-clusters,
+    .cluster-boxes {
+      flex-direction: column;
+    }
+
+    .cluster-plus.outer { padding: 4px 0; }
+
+    .arrows-row { justify-content: center; }
+    .arrows-row .arrow-down:nth-child(2),
+    .arrows-row .arrow-down:nth-child(3) { display: none; }
+    .arrows-row .arrow-down:nth-child(1) { flex: none; }
   }
 
   @media (max-width: 380px) {
-    .bar-total-label .amount { font-size: 17px; }
+    .price-tag .tag-value { font-size: 28px; }
+  }
+
+  /* 折り返しで1文字だけ残るのを防ぐ */
+  .point-box, .formula-box, .conclusion, .step-text, .step-sub, .warn-band,
+  .question-box, .compare-title, .compare-desc,
+  .calc-breakdown, .branch .body-text, figcaption, h1, h2, h3, .fig-lead,
+  .total-band, .cluster-head, .cluster-note {
+    word-break: auto-phrase;
+    text-wrap: balance;
+  }
+
+  .fig-lead {
+    text-align: center;
+    margin: 14px 0 0;
   }
 </style>
 </head>
@@ -366,15 +635,21 @@
   <section class="card">
     <p>
       eBayの輸出では、販売価格に送料を含めて出品するのが一般的です。そのため「販売価格＝税関に申告する金額」だと考えてしまいがちですが、じつは違います。
-      税関に申告する「税関申告価額」は、送料を抜いた商品そのものの代金です。この記事では、公式資料を根拠に、その理由と計算のやり方を整理します。
+      税関に申告する「税関申告価額」は、送料を抜いた商品そのものの代金です。
     </p>
-    <h2>この記事でわかること</h2>
-    <ul class="intro-list">
-      <li>「運送申告価額」と「税関申告価額」はまったく別のものであること</li>
-      <li>販売価格の中身は「商品代・送料・関税」の3つに分かれていて、申告するのは商品代の部分だけであること</li>
-      <li>米国税関（CBP）の公式資料が示す、送料を申告価格から除いてよい根拠</li>
-      <li>拡張機能「HSコードワークシート作成君」で申告価格を自動計算する手順</li>
-    </ul>
+
+    <div class="fig-wrap compare-row">
+      <div class="compare-box wrong">
+        <span class="compare-mark">✕</span>
+        <div class="compare-title">販売価格をそのまま申告</div>
+        <div class="compare-desc">そう思われがちです</div>
+      </div>
+      <div class="compare-box correct">
+        <span class="compare-mark">✓</span>
+        <div class="compare-title">商品代だけを申告</div>
+        <div class="compare-desc">送料は含めません</div>
+      </div>
+    </div>
   </section>
 
   <section class="card">
@@ -385,67 +660,27 @@
     </p>
 
     <figure class="shot">
-      <img src="images/fedex-faq-declared-value.png" alt="FedEx Japanよくある質問「運送申告価額と税関申告価額の違いは何ですか？」のスクリーンショット。運送申告価額はFedExへの賠償責任限度額の申告額、税関申告価額は税関当局への販売価格または公正な市場価格に準じた申告額、と説明されている。">
-      <figcaption>出典：FedEx Japan よくある質問「運送申告価額と税関申告価額の違いは何ですか？」</figcaption>
+      <img src="images/fedex-faq-declared-value-trimmed.png" alt="FedEx Japanよくある質問「運送申告価額と税関申告価額の違いは何ですか？」のスクリーンショット。運送申告価額はFedExへの賠償責任限度額の申告額、税関申告価額は税関当局への販売価格または公正な市場価格に準じた申告額、と説明されている。">
+      <figcaption>出典：<a href="https://www.fedex.com/ja-jp/customer-support/faq/sending/shipping-terms/declared-value-customs-value.html" target="_blank" rel="noopener">FedEx Japan よくある質問「運送申告価額と税関申告価額の違いは何ですか？」</a></figcaption>
     </figure>
 
-    <p class="source-note">
-      出典：<a href="https://www.fedex.com/ja-jp/customer-support/faq/sending/shipping-terms/declared-value-customs-value.html" target="_blank" rel="noopener">FedEx Japan「運送申告価額と税関申告価額の違いは何ですか？」</a>
-    </p>
-
-    <table class="term-table">
-      <tr>
-        <th>運送申告価額</th>
-        <td>荷物の出荷にともなう、FedExの賠償責任限度額を引き上げるためにFedExへ申告する金額。荷物が壊れた・紛失したときの補償の上限に関わるもの。</td>
-      </tr>
-      <tr>
-        <th>税関申告価額</th>
-        <td>関税など税金を決めるために税関当局へ申告する金額。貨物内容物の販売価格、または（再販しない場合を含めた）公正な市場価格に準じた金額。</td>
-      </tr>
-    </table>
+    <div class="fig-wrap term-blocks">
+      <div class="term-block ship">
+        <div class="term-title">運送申告価額</div>
+        <div class="term-body">荷物の出荷にともなう、FedExの賠償責任限度額を引き上げるためにFedExへ申告する金額。荷物が壊れた・紛失したときの補償の上限に関わるもの。</div>
+      </div>
+      <div class="term-block customs">
+        <div class="term-title">税関申告価額</div>
+        <div class="term-body">関税など税金を決めるために税関当局へ申告する金額。貨物内容物の販売価格、または（再販しない場合を含めた）公正な市場価格に準じた金額。</div>
+      </div>
+    </div>
 
     <div class="point-box">
       「運送申告価額」＝FedExへの補償額の申告　／　「税関申告価額」＝税関への課税額の申告。<br>
       この記事で扱うのは、後者の「税関申告価額」です。
     </div>
-  </section>
 
-  <section class="card">
-    <h2>第2章　販売価格の中身は3つ（商品代・送料・関税）</h2>
-    <p>
-      eBayでは送料を販売価格に含めて出品するのが基本です。つまり、バイヤーが支払う金額（販売価格）の中には、商品代だけでなく送料や関税の分も含まれています。
-      だから「販売価格＝申告価格」ではありません。
-    </p>
-    <div style="font-size:13px; color:#666; margin:8px 0;">※この記事に出てくる金額（103ドル、商品代65ドル、送料20ドル、関税18ドルなど）は、すべて説明のための参考例です。実際の金額は商品ごとに異なります。</div>
-
-    <div class="bar-total-label">販売価格<br><span class="amount">103ドル</span></div>
-    <div class="fig-sum" style="flex-wrap:nowrap;">
-      <div class="box price" style="flex:65 1 0; max-width:none; min-width:0;">
-        <span class="label">商品代</span>
-        <span class="value">65</span>
-      </div>
-      <div class="box total" style="flex:20 1 0; max-width:none; min-width:0;">
-        <span class="label">送料</span>
-        <span class="value">20</span>
-      </div>
-      <div class="box ship" style="flex:18 1 0; max-width:none; min-width:0;">
-        <span class="label">関税</span>
-        <span class="value">18</span>
-      </div>
-    </div>
-
-    <p style="text-align:center; font-size:14px; color:#444;">
-      このうち、税関に申告する「税関申告価額」に当たるのは<strong style="color:#0b3d91;">商品代（65ドル）の部分だけ</strong>です。<br>
-      送料（グレー）と関税（オレンジ）は、税関申告価額には含めません。
-    </p>
-
-    <div class="point-box">
-      税関申告価額 ＝ 販売価格 − 送料（− 関税分）＝ 商品そのものの代金
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>第3章　根拠（公式の原文）</h2>
+    <h3>根拠（公式の原文）</h3>
     <p>
       アメリカ向けの場合、税関申告価額（transaction value／課税価格）の考え方は、米国税関・国境警備局（CBP）の公式資料「Proper Deductions Of Freight And Other Costs From Customs Value」に定められています。原文は次のとおりです。
     </p>
@@ -465,35 +700,113 @@
 
     <p>
       つまり、税関に申告するべき金額は「商品そのものの代金」であって、そこに国際輸送にかかった送料を混ぜてはいけない、ということです。
-      第1章で見たFedExの「税関申告価額＝販売価格に準じた金額」という定義も、根本的には同じ考え方に基づいています。
+      上のFedExの「税関申告価額＝販売価格に準じた金額」という定義も、根本的には同じ考え方に基づいています。
     </p>
   </section>
 
   <section class="card">
-    <h2>第4章　送料を抜くとバイヤーにもセラーにもメリット</h2>
+    <h2>第2章　販売価格の中身は商品代と送料（関税は別に請求）</h2>
+    <p>
+      eBayでは送料を販売価格に含めて出品するのが基本です。つまり、販売価格の中には、商品代だけでなく送料も含まれています。
+      だから「販売価格＝申告価格」ではありません。
+      関税は販売価格には入れず、シッピングポリシー（送料の欄）として別に請求します。
+    </p>
+    <p class="small-note">※この記事に出てくる金額（合計103ドル、販売価格85ドル、商品代65ドル、送料20ドル、関税18ドルなど）は、すべて説明のための参考例です。実際の金額は商品ごとに異なります。</p>
+
+    <div class="fig-wrap">
+      <div class="total-band">バイヤーが支払う合計　<span class="total-amount">103ドル</span></div>
+      <div class="arrow-down">▼</div>
+      <div class="split-clusters">
+        <div class="cluster price-cluster">
+          <div class="cluster-head"><span class="icon-inline">🏷️</span>販売価格 85ドル</div>
+          <div class="cluster-boxes">
+            <div class="split-box price">
+              <div class="icon-circle">📦</div>
+              <div class="split-label">商品代</div>
+              <div class="split-value">65</div>
+              <div class="stamp ok">✔ ここだけ申告</div>
+            </div>
+            <div class="cluster-plus">＋</div>
+            <div class="split-box ship">
+              <div class="icon-circle">🚚</div>
+              <div class="split-label">送料</div>
+              <div class="split-value">20</div>
+              <div class="stamp no">✕ 含めない</div>
+            </div>
+          </div>
+        </div>
+        <div class="cluster-plus outer">＋</div>
+        <div class="cluster duty-cluster">
+          <div class="cluster-head">シッピングポリシー<br>（送料の欄）</div>
+          <div class="cluster-boxes">
+            <div class="split-box duty">
+              <div class="icon-circle">🧾</div>
+              <div class="split-label">関税</div>
+              <div class="split-value">18</div>
+              <div class="stamp no">✕ 含めない</div>
+            </div>
+          </div>
+          <div class="cluster-note">販売価格とは別に請求</div>
+        </div>
+      </div>
+      <p class="fig-lead">
+        このうち、税関に申告する「税関申告価額」に当たるのは<strong>商品代（65ドル）の部分だけ</strong>です。<br>
+        送料（グレー）と関税（オレンジ）は、税関申告価額には含めません。
+      </p>
+    </div>
+
+    <div class="point-box">
+      税関申告価額 ＝ 販売価格 − 送料 ＝ 商品そのものの代金
+    </div>
+
+    <p class="source-note">
+      関税をシッピングポリシーで請求する理由は、<a href="https://naokijodan.github.io/ebay-lowest-price-guide/" target="_blank" rel="noopener">eBayの「最安値」とシッピングポリシーの考え方</a>で説明しています。
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>第3章　送料を抜くとバイヤーにもセラーにもメリット</h2>
     <p>
       申告価格から送料を除くことは、単に「ルールだから」というだけでなく、バイヤー側の負担を減らすことにもつながります。以下はいずれも説明のための参考例です。
     </p>
 
-    <h3>アメリカ向けの場合</h3>
-    <p>
-      仮に送料が20ドル、関税率12%、為替レートが1ドル150円だとすると、送料の分にかかっていたはずの関税は次のように計算できます。
-    </p>
-    <div class="formula-box">
-      20ドル × 12% × 150円 ＝ 360円
-    </div>
-    <p>
-      送料を申告価格から抜くことで、この360円分の関税がかからなくなります。実際には関税額に連動する手数料（処理手数料など）も一緒に減るため、負担の軽減額はもう少し大きくなる見込みです。
-    </p>
+    <div class="fig-wrap">
+      <div class="question-box">発送先によって、送料を抜く効果はどう出るか</div>
+      <div class="arrows-row">
+        <div class="arrow-down">▼</div>
+        <div class="arrow-down">▼</div>
+        <div class="arrow-down">▼</div>
+      </div>
+      <div class="branches">
+        <div class="branch us">
+          <div class="icon-circle">🇺🇸</div>
+          <h3>アメリカ向けの場合</h3>
+          <div class="body-text">送料20ドル・関税率12%・為替レート1ドル150円の場合</div>
+          <div class="formula-box" style="margin:8px 0;"><span style="display:inline-block">20ドル × 12%</span> <span style="display:inline-block">× 150円 ＝ 360円</span></div>
+          <div class="conclusion us">送料を抜くと360円分の関税がかからなくなります</div>
+        </div>
 
-    <h3>アメリカ以外の国のバイヤーの場合</h3>
-    <p>
-      高額な商品ほど、送料分まで含めた金額に対して関税やVAT（付加価値税）がかかっていた分が解消されます。国によって関税・VATの計算方法は違いますが、「申告価額に送料を混ぜない」ことが出発点になります。
-    </p>
-    <p>
-      ただし、EU（ヨーロッパ連合）向けは注意が必要です。EU関税法典（UCC）第71条（1）（e）は、輸入品の価格に含まれていない場合、EU域内への輸送・保険・積み込み費用を課税価格（customs value）に別途加算する、と定めています。イギリスもEU離脱時にこの規定を引き継いでいます。
-      つまりEU・イギリスでは、税関側が輸送費用を課税価格に加算する仕組みです。商品代金に送料まで混ぜて申告すると、税関が加算する輸送費と重なり、本来より高い課税価格になる可能性があります。申告価額には商品代金だけを書き、送料は送料の欄で示すのが基本です。
-    </p>
+        <div class="branch other">
+          <div class="icon-circle">🌍</div>
+          <h3>アメリカ以外の国のバイヤーの場合</h3>
+          <div class="body-text">高額な商品ほど、送料分まで含めた金額に対して関税やVAT（付加価値税）がかかっていた分が解消されます</div>
+          <div class="conclusion other">「申告価額に送料を混ぜない」ことが出発点</div>
+        </div>
+
+        <div class="branch eu">
+          <div class="icon-circle">🇪🇺</div>
+          <h3>EU・イギリス向けは注意が必要</h3>
+          <div class="body-text">税関側が輸送費用を課税価格に加算する仕組みです</div>
+          <div class="conclusion eu">商品代金だけを書き、送料は送料の欄で示すのが基本</div>
+        </div>
+      </div>
+
+      <div class="branch-footnotes">
+        <p class="footnote-item">🇺🇸 <strong>アメリカ向け：</strong>実際には関税額に連動する手数料（処理手数料など）も一緒に減るため、負担の軽減額はもう少し大きくなる見込みです。</p>
+        <p class="footnote-item">🌍 <strong>アメリカ以外の国：</strong>国によって関税・VATの計算方法は違います。</p>
+        <p class="footnote-item">🇪🇺 <strong>EU・イギリス向け：</strong>EU関税法典（UCC）第71条（1）（e）は、輸入品の価格に含まれていない場合、EU域内への輸送・保険・積み込み費用を課税価格（customs value）に別途加算する、と定めています。イギリスもEU離脱時にこの規定を引き継いでいます。商品代金に送料まで混ぜて申告すると、税関が加算する輸送費と重なり、本来より高い課税価格になる可能性があります。</p>
+      </div>
+    </div>
 
     <div class="point-box">
       申告価格に送料を混ぜないことは、アメリカ向けの関税を減らすだけでなく、多くの国で「余計な課税を避ける」ことにつながります。
@@ -501,29 +814,73 @@
   </section>
 
   <section class="card">
-    <h2>第5章　HSコードワークシート作成君での計算手順（v1.9.1）</h2>
+    <h2>第4章　HSコードワークシート作成君での計算手順（v1.9.1）</h2>
     <p>
       拡張機能「HSコードワークシート作成君」のパネルには「申告価格の計算（販売価格 − 送料）」という機能があります。次の手順で、税関申告価額を自動計算できます。
     </p>
-    <ol class="steps">
-      <li>「今日のレートを取得」を押す（欧州中央銀行の参考レートを取得します。手入力もできます）</li>
-      <li>「実際の販売価格（USD）」を入力する</li>
-      <li>CPaSSの「送料詳細」から「運送料金」「混雑時割増金」「燃料割増金」の3つを円で転記する（「推定関税及び税金料金」「推定関税処理手数料」は含めません。項目が空欄の場合は0円として入力します）</li>
-      <li>「申告価格に反映」を押す</li>
-      <li>「申告価格をコピー」を押し、CPaSSの「（申告）単価」欄に貼り付ける</li>
-    </ol>
 
-    <div class="formula-box">
-      申告価格 ＝ 販売価格（USD） − （運送料金＋混雑時割増金＋燃料割増金）÷ 為替レート<br>
-      <span style="font-weight:normal; font-size:13px;">（小数点以下2桁で四捨五入）</span>
+    <div class="fig-wrap">
+      <div class="steps-row">
+        <div class="step-card">
+          <div class="step-num">①</div>
+          <div class="step-icon">💱</div>
+          <div class="step-text">「今日のレートを取得」を押す</div>
+          <div class="step-sub">欧州中央銀行の参考レートを取得します。手入力もできます。</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">②</div>
+          <div class="step-icon">💵</div>
+          <div class="step-text">「実際の販売価格（USD）」を入力する</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">③</div>
+          <div class="step-icon">🚚</div>
+          <div class="step-text">CPaSSの「送料詳細」から「運送料金」「混雑時割増金」「燃料割増金」の3つを円で転記する</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">④</div>
+          <div class="step-icon">🔄</div>
+          <div class="step-text">「申告価格に反映」を押す</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">⑤</div>
+          <div class="step-icon">📋</div>
+          <div class="step-text">「申告価格をコピー」を押し、<br>CPaSSの「（申告）単価」欄に貼り付ける</div>
+        </div>
+      </div>
+
+      <div class="warn-band">
+        <strong>③の注意：</strong>「推定関税及び税金料金」「推定関税処理手数料」は含めません。項目が空欄の場合は0円として入力します。
+      </div>
     </div>
 
-    <p>数値例（実際の画面の一例です。金額は参考例としてご覧ください）</p>
-    <div class="example-line correct">
-      実際の販売価格 <strong>112.00ドル</strong>、為替レート 1ドル＝157.27円<br>
-      送料の内訳：運送料金 2,797円＋混雑時割増金 98円＋燃料割増金 1,332円 ＝ <strong>4,227円</strong><br>
-      → 送料 4,227円 ÷ 157.27 ＝ <strong>26.88ドル</strong><br>
-      → 申告価格 112.00 − 26.88 ＝ <strong>85.12ドル</strong>
+    <div class="formula-box">
+      申告価格 ＝ 販売価格（USD） − （運送料金＋混雑時割増金＋燃料割増金）÷ 為替レート
+      <span class="note">（小数点以下2桁で四捨五入）</span>
+    </div>
+
+    <p class="small-note">数値例（実際の画面の一例です。金額は参考例としてご覧ください）</p>
+    <div class="fig-wrap">
+      <div class="calc-row">
+        <div class="calc-box price">
+          <div class="calc-label">実際の販売価格</div>
+          <div class="calc-value">112.00<span class="unit">ドル</span></div>
+        </div>
+        <div class="calc-symbol">－</div>
+        <div class="calc-box ship">
+          <div class="calc-label">送料</div>
+          <div class="calc-value">26.88<span class="unit">ドル</span></div>
+        </div>
+        <div class="calc-symbol">＝</div>
+        <div class="calc-box declared">
+          <div class="calc-label">申告価格</div>
+          <div class="calc-value">85.12<span class="unit">ドル</span></div>
+        </div>
+      </div>
+      <div class="calc-breakdown">
+        <div>送料の内訳：<span class="term-chip">運送料金 2,797円</span>＋<span class="term-chip">混雑時割増金 98円</span>＋<span class="term-chip">燃料割増金 1,332円</span> ＝ 4,227円</div>
+        <div>4,227円 ÷ 157.27（為替レート 1ドル＝157.27円）＝ 26.88ドル</div>
+      </div>
     </div>
 
     <figure class="shot">
@@ -537,20 +894,22 @@
   </section>
 
   <section class="card">
-    <h2>第6章　注意点</h2>
-    <ul class="intro-list">
-      <li><strong>同梱（複数商品を1箱にまとめて発送）の場合</strong>：送料を商品数で按分してから、それぞれの商品代から引きます。1商品分の送料だけをまるごと1商品から引かないようにします。</li>
-      <li><strong>過少申告に注意</strong>：送料を引きすぎて、実際の商品代金より低い金額を申告するのは過少申告になります。申告価格が実際の商品代金を下回らないようにします。</li>
-      <li><strong>引くのは実際にかかった運送費のみ</strong>：CPaSSの「推定関税及び税金料金」「推定関税処理手数料」は運送費ではないため、申告価格の計算からは引きません。</li>
-      <li><strong>運送申告価額（補償用）とは別欄</strong>：第1章で見た「運送申告価額」（FedExへの賠償責任限度額の申告）と、この記事で扱う「税関申告価額」は別の欄・別の目的です。混同しないようにします。</li>
-    </ul>
+    <h2>第5章　注意点</h2>
+    <div class="caution-box">
+      <ul class="intro-list">
+        <li><strong>同梱（複数商品を1箱にまとめて発送）の場合</strong>：送料を商品数で按分してから、それぞれの商品代から引きます。1商品分の送料だけをまるごと1商品から引かないようにします。</li>
+        <li><strong>過少申告に注意</strong>：送料を引きすぎて、実際の商品代金より低い金額を申告するのは過少申告になります。申告価格が実際の商品代金を下回らないようにします。</li>
+        <li><strong>引くのは実際にかかった運送費のみ</strong>：CPaSSの「推定関税及び税金料金」「推定関税処理手数料」は運送費ではないため、申告価格の計算からは引きません。</li>
+        <li><strong>運送申告価額（補償用）とは別欄</strong>：第1章で見た「運送申告価額」（FedExへの賠償責任限度額の申告）と、この記事で扱う「税関申告価額」は別の欄・別の目的です。混同しないようにします。</li>
+      </ul>
+    </div>
   </section>
 
   <section class="card">
     <h2>まとめ</h2>
     <ol class="summary-list">
       <li>「運送申告価額」（FedExへの補償申告）と「税関申告価額」（税関への課税申告）はまったく別のものです。</li>
-      <li>eBayの販売価格には商品代・送料・関税が含まれており、税関に申告するのは商品代の部分だけです。</li>
+      <li>eBayの販売価格には商品代と送料が含まれており、税関に申告するのは商品代の部分だけです。関税は販売価格には入れず、シッピングポリシー（送料の欄）として別に請求します。</li>
       <li>米国CBPの公式資料も、国際輸送にかかった費用を課税価格から除くとしています。EU・イギリス向けは税関側で送料が別途加算される仕組みがあるため、なおさら送料を混ぜないことが大切です。</li>
       <li>HSコードワークシート作成君を使えば、販売価格と送料の内訳から申告価格を自動計算できます。</li>
     </ol>
