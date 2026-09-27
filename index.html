@@ -491,47 +491,46 @@
   .branch-footnotes .footnote-item:last-child { margin-bottom: 0; }
   .branch-footnotes .footnote-item strong { color: #222; }
 
-  /* ---- 第5章：手順カード ---- */
-  .steps-row {
-    display: flex;
-    align-items: stretch;
-    gap: 10px;
-    margin: 12px 0;
+  /* ---- 第4章：番号付きの手順一覧（画像の番号の印と対応） ---- */
+  .step-list {
+    margin: 16px 0;
+    border-top: 1px solid #e0e0e0;
   }
-  .step-card {
-    flex: 1 1 0;
-    min-width: 0;
-    background: var(--accent-light);
-    border: var(--border-w) solid var(--accent);
-    border-radius: var(--radius-box);
-    padding: var(--pad-tight);
+  .step-row {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 4px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .step-badge {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e53935;
+    color: #fff;
+    font-size: var(--fs-label);
+    font-weight: bold;
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
   }
-  .step-num { font-size: var(--fs-heading); font-weight: bold; color: var(--accent); line-height: 1; margin-bottom: 4px; }
-  .step-icon { font-size: var(--fs-icon); margin-bottom: 4px; }
-  .step-text { font-size: var(--fs-label); font-weight: bold; color: #0b3d91; line-height: 1.45; }
-  .step-sub {
-    margin-top: 8px;
-    font-size: var(--fs-note);
-    font-weight: normal;
-    color: #455a64;
-    line-height: 1.4;
-  }
-  .warn-band {
-    background: var(--wrong-bg);
-    border: var(--border-w) solid var(--wrong-border);
-    color: var(--wrong-text);
-    border-radius: var(--radius-band);
-    padding: var(--pad-roomy);
-    margin: 10px 0;
+  .step-emoji { flex: none; font-size: var(--fs-icon); line-height: 1; }
+  .step-content { flex: 1 1 auto; min-width: 0; }
+  .step-line {
     font-size: var(--fs-body);
+    font-weight: normal;
+    color: #222;
     line-height: 1.6;
-    text-align: left;
   }
+  .step-note {
+    margin-top: 4px;
+    font-size: var(--fs-note);
+    color: #777;
+    line-height: 1.5;
+  }
+  .step-warn-text { color: var(--wrong-text); font-weight: bold; }
 
   .calc-row {
     display: flex;
@@ -589,7 +588,6 @@
     .term-blocks,
     .split-row,
     .branches,
-    .steps-row,
     .calc-row,
     .compare-row,
     .split-clusters,
@@ -609,8 +607,13 @@
     .price-tag .tag-value { font-size: 28px; }
   }
 
+  /* 手順の一覧は言葉の区切りで折り返す */
+  .step-line, .step-note {
+    word-break: auto-phrase;
+  }
+
   /* 折り返しで1文字だけ残るのを防ぐ */
-  .point-box, .formula-box, .conclusion, .step-text, .step-sub, .warn-band,
+  .point-box, .formula-box, .conclusion,
   .question-box, .compare-title, .compare-desc,
   .calc-breakdown, .branch .body-text, figcaption, h1, h2, h3, .fig-lead,
   .total-band, .cluster-head, .cluster-note {
@@ -819,38 +822,50 @@
       拡張機能「HSコードワークシート作成君」のパネルには「申告価格の計算（販売価格 − 送料）」という機能があります。次の手順で、税関申告価額を自動計算できます。
     </p>
 
-    <div class="fig-wrap">
-      <div class="steps-row">
-        <div class="step-card">
-          <div class="step-num">①</div>
-          <div class="step-icon">💱</div>
-          <div class="step-text">「今日のレートを取得」を押す</div>
-          <div class="step-sub">欧州中央銀行の参考レートを取得します。手入力もできます。</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">②</div>
-          <div class="step-icon">💵</div>
-          <div class="step-text">「実際の販売価格（USD）」を入力する</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">③</div>
-          <div class="step-icon">🚚</div>
-          <div class="step-text">CPaSSの「送料詳細」から「運送料金」「混雑時割増金」「燃料割増金」の3つを円で転記する</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">④</div>
-          <div class="step-icon">🔄</div>
-          <div class="step-text">「申告価格に反映」を押す</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">⑤</div>
-          <div class="step-icon">📋</div>
-          <div class="step-text">「申告価格をコピー」を押し、<br>CPaSSの「（申告）単価」欄に貼り付ける</div>
+    <figure class="shot">
+      <a href="images/cpass-declared-value-flow-numbered.png" target="_blank" rel="noopener">
+        <img src="images/cpass-declared-value-flow-numbered.png" alt="CPaSSの注文詳細画面と拡張機能「HSコードワークシート作成君」のパネルを赤い矢印で結んだ図。矢印には手順の1〜5の番号が付いている。1は「今日のレートを取得」ボタン、2は商品価格112.00 USDから「実際の販売価格（USD）」欄への矢印、3はCPaSSの送料詳細（運送料金・混雑時割増金・燃料割増金）から送料の内訳欄への3本の矢印、4は「申告価格に反映」ボタン、5は「申告価格をコピー」ボタンと貼り付け先の「（申告）単価」欄を示している。画面内の注文番号・アイテム番号・eBay IDなどの個人情報はグレーで塗りつぶしている。">
+      </a>
+      <figcaption>CPaSSの「送料詳細」の3項目を拡張機能に転記し、計算した申告価格を「（申告）単価」に貼り付けます（画面は実際の一例）</figcaption>
+    </figure>
+
+    <div class="step-list">
+      <div class="step-row">
+        <span class="step-badge">1</span>
+        <span class="step-emoji">💱</span>
+        <div class="step-content">
+          <div class="step-line">「今日のレートを取得」を押す</div>
+          <div class="step-note">欧州中央銀行の参考レートを取得します。手入力もできます。</div>
         </div>
       </div>
-
-      <div class="warn-band">
-        <strong>③の注意：</strong>「推定関税及び税金料金」「推定関税処理手数料」は含めません。項目が空欄の場合は0円として入力します。
+      <div class="step-row">
+        <span class="step-badge">2</span>
+        <span class="step-emoji">💵</span>
+        <div class="step-content">
+          <div class="step-line">「実際の販売価格（USD）」を入力する</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <span class="step-badge">3</span>
+        <span class="step-emoji">🚚</span>
+        <div class="step-content">
+          <div class="step-line">CPaSSの「送料詳細」から「運送料金」「混雑時割増金」「燃料割増金」の3つを円で転記する</div>
+          <div class="step-note"><span class="step-warn-text">「推定関税及び税金料金」「推定関税処理手数料」は含めません。</span>項目が空欄の場合は0円として入力します。</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <span class="step-badge">4</span>
+        <span class="step-emoji">🔄</span>
+        <div class="step-content">
+          <div class="step-line">「申告価格に反映」を押す</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <span class="step-badge">5</span>
+        <span class="step-emoji">📋</span>
+        <div class="step-content">
+          <div class="step-line">「申告価格をコピー」を押し、CPaSSの「（申告）単価」欄に貼り付ける</div>
+        </div>
       </div>
     </div>
 
@@ -882,11 +897,6 @@
         <div>4,227円 ÷ 157.27（為替レート 1ドル＝157.27円）＝ 26.88ドル</div>
       </div>
     </div>
-
-    <figure class="shot">
-      <img src="images/cpass-declared-value-flow.png" alt="CPaSSの注文詳細画面と拡張機能「HSコードワークシート作成君」のパネルを矢印で結んだ図。CPaSSの送料詳細にある運送料金・混雑時割増金・燃料割増金の3項目を拡張機能に転記し、計算された申告価格をCPaSSの（申告）単価欄に貼り付ける流れを示している。画面内の注文番号・アイテム番号・eBay IDなどの個人情報はグレーで塗りつぶしている。">
-      <figcaption>CPaSSの「送料詳細」の3項目を拡張機能に転記し、計算した申告価格を「（申告）単価」に貼り付けます（画面は実際の一例）</figcaption>
-    </figure>
 
     <p class="source-note">
       拡張機能の案内：<a href="https://naokijodan.github.io/bulk-tools-guide/extensions.html" target="_blank" rel="noopener">https://naokijodan.github.io/bulk-tools-guide/extensions.html</a>
